@@ -100,17 +100,25 @@ int main()
     switch(comparison)
     {
         case 1:
-            cout << "The first house is cheaper" << endl;
+            cout << "You should buy house number 1" << endl;
             break;
         case 2:
-            cout << "The two houses are equally expensive" << endl;
+            cout << "You should buy house number 2" << endl;
             break;
         case 3:
-            cout << "The second house is cheaper" << endl;
+            cout << "You should buy house number 3" << endl;
             break;
         case 4:
-            cout << "Invalid comparison value. There must be a bug"<<endl;
+            cout << "You should buy house number 1 or house number 2" << endl;
             break;
+        case 5:
+            cout << "You should buy house number 2 or house number 3" << endl;
+        case 6:
+            cout << "You should buy house number 1 or house number 3" << endl;
+        case 7:
+            cout << "You should buy any of the houses" << endl;
+        case 8:
+            cout << "Invalid input" << endl;
     }
 
     return 0;
