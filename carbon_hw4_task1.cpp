@@ -5,80 +5,55 @@
 #include <iostream>
 using namespace std;
 // Constants, Classes, Structures
-class house
+class HouseInfo
 {
 private:
     int streetNum;
     string streetName;
     double price;
 public:
-    house InputHouse()
+    HouseInfo InputHouse()
     {
         //Create a copy of the structure house
-        house h;
+        HouseInfo hi;
         //Get the address and price of home
         cout << "Please enter the street number: " << endl;
-        cin >> h.streetNum;
+        cin >> hi.streetNum;
         cin.ignore();
         cout << "Please enter the street name: " << endl;
-        getline(cin, h.streetName);
+        getline(cin, hi.streetName);
 
         cout << "Please enter the price of the house: " << endl;
-        cin >> h.price;
+        cin >> hi.price;
         cin.ignore();
-        return h;
+        return hi;
 
     }
 
-    int ComparePrices(house array[])
+    void PrintHouse( int houseNum, HouseInfo h)
     {
 
-        if ( array[0].price < array[1].price && array[0].price < array[2].price)
-        {
-            return 1;
-        }
-        else if ( array[1].price <  array[0].price && array[1].price < array[2].price)
-        {
-            return 2;
-        }
-        else if (array[2].price < array[1].price && array[2].price < array[0].price)
-        {
-            return 3;
-        }
-        else if (array[0].price == array[1].price && array[0].price < array[2].price)
-        {
-            return 4;
-        }
-        else if (array[1].price == array[2].price && array[1].price < array[0].price)
-        {
-            return 5;
-        }
-        else if (array[0].price == array[2].price && array[0].price < array[1].price)
-        {
-            return 6;
-        }
-        else if (array[0].price == array[1].price && array[1].price == array[2].price)
-        {
-            return 7;
-        }
-        else
-            return 8;
+        cout << houseNum <<" House: at " << h.streetNum << " "
+             << h.streetName << " " << "for " << h.price << endl;
+
     }
-    void PrintHouse( int houseNum, house h)
+
+    double GetPrice()
     {
-
-        cout <<houseNum<<" House: at " << h.streetNum << " "
-             << h.streetName << " " << "for "<< h.price<<endl;
-
+        return price;
     }
+
+
 };
 // Prototypes
 const int SIZE = 3;
+int ComparePrices(HouseInfo array[]);
+
 // Main Program
 int main()
 {
-    house array[SIZE];
-    house h1, h2, h3;
+    HouseInfo array[SIZE];
+    HouseInfo h1, h2, h3;
     cout<< "Enter the info for house 1"<<endl;
     array[0] = h1.InputHouse();
 
@@ -95,7 +70,7 @@ int main()
 
 
     //Compare the prices of the two homes with a function
-    int comparison = array[SIZE].ComparePrices(array[]);
+    int comparison = ComparePrices(array);
     //Switch statement for the 4 cases of comparision
     switch(comparison)
     {
@@ -117,7 +92,7 @@ int main()
             cout << "You should buy house number 1 or house number 3" << endl;
         case 7:
             cout << "You should buy any of the houses" << endl;
-        case 8:
+        default:
             cout << "Invalid input" << endl;
     }
 
@@ -125,5 +100,37 @@ int main()
 }
 
 
-
 // Function Definitions
+int ComparePrices(HouseInfo array[])
+{
+
+    if (array[0].GetPrice() < array[1].GetPrice() && array[0].GetPrice() < array[2].GetPrice())
+    {
+        return 1;
+    }
+    else if (array[1].GetPrice() <  array[0].GetPrice() && array[1].GetPrice() < array[2].GetPrice())
+    {
+        return 2;
+    }
+    else if (array[2].GetPrice() < array[1].GetPrice() && array[2].GetPrice() < array[0].GetPrice())
+    {
+        return 3;
+    }
+    else if (array[0].GetPrice() == array[1].GetPrice() && array[0].GetPrice() < array[2].GetPrice())
+    {
+        return 4;
+    }
+    else if (array[1].GetPrice() == array[2].GetPrice() && array[1].GetPrice() < array[0].GetPrice())
+    {
+        return 5;
+    }
+    else if (array[0].GetPrice() == array[2].GetPrice() && array[0].GetPrice() < array[1].GetPrice())
+    {
+        return 6;
+    }
+    else if (array[0].GetPrice() == array[1].GetPrice() && array[1].GetPrice() == array[2].GetPrice())
+    {
+        return 7;
+    }
+
+}
