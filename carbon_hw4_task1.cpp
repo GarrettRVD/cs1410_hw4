@@ -29,27 +29,41 @@ public:
         return h;
 
     }
-    /*
+
     int ComparePrices(house array[])
     {
 
-        if ( array[0].price > array[1].price && array[0].price > array[2].price)
+        if ( array[0].price < array[1].price && array[0].price < array[2].price)
         {
             return 1;
         }
-        else if ( array[1].price >  secondHouse.price)
+        else if ( array[1].price <  array[0].price && array[1].price < array[2].price)
         {
             return 2;
         }
-        else if (firstHouse.price > secondHouse.price)
+        else if (array[2].price < array[1].price && array[2].price < array[0].price)
         {
             return 3;
         }
-        else
+        else if (array[0].price == array[1].price && array[0].price < array[2].price)
         {
             return 4;
         }
-    }*/
+        else if (array[1].price == array[2].price && array[1].price < array[0].price)
+        {
+            return 5;
+        }
+        else if (array[0].price == array[2].price && array[0].price < array[1].price)
+        {
+            return 6;
+        }
+        else if (array[0].price == array[1].price && array[1].price == array[2].price)
+        {
+            return 7;
+        }
+        else
+            return 8;
+    }
     void PrintHouse( int houseNum, house h)
     {
 
@@ -67,12 +81,11 @@ int main()
     house h1, h2, h3;
     cout<< "Enter the info for house 1"<<endl;
     array[0] = h1.InputHouse();
+
     cout << "Enter info for house 2\n";
-    //h2.InputHouse();
     array[1] = h2.InputHouse();
 
     cout << "Enter info for house 3"<<endl;
-    //h3.InputHouse();
     array[2] = h3.InputHouse();
 
     cout << "Your 3 houses are:"<<endl;
@@ -81,8 +94,8 @@ int main()
     h3.PrintHouse(3, array[2]);
 
 
-    /*//Compare the prices of the two homes with a function
-    int comparison = ComparePrices(firstHouse, secondHouse);
+    //Compare the prices of the two homes with a function
+    int comparison = array[SIZE].ComparePrices(array[]);
     //Switch statement for the 4 cases of comparision
     switch(comparison)
     {
@@ -99,7 +112,7 @@ int main()
             cout << "Invalid comparison value. There must be a bug"<<endl;
             break;
     }
-    */
+
     return 0;
 }
 
