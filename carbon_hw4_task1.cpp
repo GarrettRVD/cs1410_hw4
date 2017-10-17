@@ -1,10 +1,13 @@
 // File: carbon_hw4_task1.cpp
 // Created by Garrett Van Dyke and Kevin Tenney on 10/10/2017 for CS1410.
 // Copyright (c) 2017 WSU
-
 #include <iostream>
+#include <iomanip>
 using namespace std;
+
 // Constants, Classes, Structures
+const int SIZE = 3;
+
 class HouseInfo
 {
 private:
@@ -14,7 +17,7 @@ private:
 public:
     HouseInfo InputHouse()
     {
-        //Create a copy of the structure house
+        //Create a copy of the class HouseInfo
         HouseInfo hi;
         //Get the address and price of home
         cout << "Please enter the street number: " << endl;
@@ -26,16 +29,18 @@ public:
         cout << "Please enter the price of the house: " << endl;
         cin >> hi.price;
         cin.ignore();
-        return hi;
 
+        return hi;
     }
 
-    void PrintHouse( int houseNum, HouseInfo h)
+    int GetStreetNum()
     {
+        return streetNum;
+    }
 
-        cout << houseNum <<" House: at " << h.streetNum << " "
-             << h.streetName << " " << "for " << h.price << endl;
-
+    string GetStreetName()
+    {
+        return streetName;
     }
 
     double GetPrice()
@@ -43,10 +48,10 @@ public:
         return price;
     }
 
-
 };
+
 // Prototypes
-const int SIZE = 3;
+void PrintHouse(int houseNum, HouseInfo h);
 int ComparePrices(HouseInfo array[]);
 
 // Main Program
@@ -57,43 +62,46 @@ int main()
     cout<< "Enter the info for house 1"<<endl;
     array[0] = h1.InputHouse();
 
-    cout << "Enter info for house 2\n";
+    cout << "\nEnter info for house 2\n";
     array[1] = h2.InputHouse();
 
-    cout << "Enter info for house 3"<<endl;
+    cout << "\nEnter info for house 3"<<endl;
     array[2] = h3.InputHouse();
 
-    cout << "Your 3 houses are:"<<endl;
-    h1.PrintHouse(1, array[0]);
-    h2.PrintHouse(2, array[1]);
-    h3.PrintHouse(3, array[2]);
+    cout << "\nYour 3 houses are:"<<endl;
+    PrintHouse(1, array[0]);
+    PrintHouse(2, array[1]);
+    PrintHouse(3, array[2]);
 
 
     //Compare the prices of the two homes with a function
     int comparison = ComparePrices(array);
-    //Switch statement for the 4 cases of comparision
+    //Switch statement for the cases of comparision
     switch(comparison)
     {
         case 1:
-            cout << "You should buy house number 1" << endl;
+            cout << "\nYou should buy house number 1" << endl;
             break;
         case 2:
-            cout << "You should buy house number 2" << endl;
+            cout << "\nYou should buy house number 2" << endl;
             break;
         case 3:
-            cout << "You should buy house number 3" << endl;
+            cout << "\nYou should buy house number 3" << endl;
             break;
         case 4:
-            cout << "You should buy house number 1 or house number 2" << endl;
+            cout << "\nYou should buy house number 1 or house number 2" << endl;
             break;
         case 5:
-            cout << "You should buy house number 2 or house number 3" << endl;
+            cout << "\nYou should buy house number 2 or house number 3" << endl;
+            break;
         case 6:
-            cout << "You should buy house number 1 or house number 3" << endl;
+            cout << "\nYou should buy house number 1 or house number 3" << endl;
+            break;
         case 7:
-            cout << "You should buy any of the houses" << endl;
+            cout << "\nYou should buy any of the houses" << endl;
+            break;
         default:
-            cout << "Invalid input" << endl;
+            cout << "\nInvalid input" << endl;
     }
 
     return 0;
@@ -101,6 +109,13 @@ int main()
 
 
 // Function Definitions
+void PrintHouse(int houseNum, HouseInfo h)
+{
+    cout << houseNum <<" House: at " << h.GetStreetNum() << " "
+    << h.GetStreetName() << " " << "for $[" << fixed << setprecision(2) << h.GetPrice() << "]" << endl;
+
+}
+
 int ComparePrices(HouseInfo array[])
 {
 
